@@ -5,6 +5,8 @@
  * String utility functions that need to be built as part of the firmware.
  */
 
+#include <div64.h>
+
 #include "sysincludes.h"
 
 #include "utility.h"
@@ -31,8 +33,7 @@ uint32_t Uint64ToString(char *buf, uint32_t bufsize, uint64_t value,
 	s = ibuf + UINT64_TO_STRING_MAX - 1;
 	*(s) = '\0';
 	do {
-		int v = value % radix;
-		value /= radix;
+		int v = do_div(value, radix);
 
 		*(--s) = (char)(v < 10 ? v + '0' : v + 'a' - 10);
 		if (++usedsize > bufsize)
