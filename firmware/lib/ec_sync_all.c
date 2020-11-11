@@ -71,8 +71,10 @@ VbError_t ec_sync_all(struct vb2_context *ctx)
 	}
 
 	/* Reboot if phase 1 needed it, or if we need to load VGA Option ROM */
-	if (phase1_rv)
+	if (phase1_rv) {
+		VB2_DEBUG("Phase 1 reboot requested\n");
 		return VBERROR_EC_REBOOT_TO_RO_REQUIRED;
+	}
 	if (reboot_for_oprom)
 		return VBERROR_VGA_OPROM_MISMATCH;
 

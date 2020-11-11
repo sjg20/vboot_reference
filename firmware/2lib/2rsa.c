@@ -414,14 +414,14 @@ int vb2_rsa_verify_digest(const struct vb2_public_key *key,
 	 * use vb2_safe_memcmp() just to be on the safe side.  (That's also why
 	 * we don't return before this check if the padding check failed.)
 	 */
-	VB2_DEBUG("padding rv=%d\n", rv);
+// 	VB2_DEBUG("padding rv=%d\n", rv);
 	pad_size = sig_size - vb2_digest_size(key->hash_alg);
-	VB2_DEBUG("sig:\n");
-	print_buffer((unsigned long)(sig + pad_size), sig + pad_size,
-		     1, key_bytes - pad_size, 0);
-	VB2_DEBUG("digest:\n");
-	print_buffer((unsigned long)digest, digest, 1,
-		     key_bytes - pad_size, 0);
+// // 	VB2_DEBUG("sig:\n");
+// 	print_buffer((unsigned long)(sig + pad_size), sig + pad_size,
+// 		     1, key_bytes - pad_size, 0);
+// 	VB2_DEBUG("digest:\n");
+// 	print_buffer((unsigned long)digest, digest, 1,
+// 		     key_bytes - pad_size, 0);
 	if (vb2_safe_memcmp(sig + pad_size, digest, key_bytes - pad_size)) {
 		VB2_DEBUG("Digest check failed!\n");
 		if (!rv)

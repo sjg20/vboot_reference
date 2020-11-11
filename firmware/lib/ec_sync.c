@@ -185,8 +185,10 @@ static VbError_t update_ec(struct vb2_context *ctx, int devidx,
 
 	/* Verify the EC was updated properly */
 	sd->flags &= ~WHICH_EC(devidx, select);
-	if (check_ec_hash(ctx, devidx, select) != VB2_SUCCESS)
+	if (check_ec_hash(ctx, devidx, select) != VB2_SUCCESS) {
+		VB2_DEBUG("EC hash mismatch\n");
 		return VBERROR_EC_REBOOT_TO_RO_REQUIRED;
+	}
 	if (sd->flags & WHICH_EC(devidx, select)) {
 		VB2_DEBUG("Failed to update\n");
 		request_recovery(ctx, VB2_RECOVERY_EC_UPDATE);
