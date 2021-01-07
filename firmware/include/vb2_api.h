@@ -38,6 +38,7 @@
 #include "../2lib/include/2nvstorage_fields.h"
 #include "../2lib/include/2struct.h"
 #include "../lib20/include/vb2_struct.h"
+#include "../2lib/include/2secdata.h"
 #endif
 
 #endif  /* VBOOT_VB2_API_H_ */
