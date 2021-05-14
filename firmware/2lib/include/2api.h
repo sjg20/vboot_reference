@@ -276,8 +276,8 @@ struct vb2_context {
 	/*
 	 * Secure data for firmware verification stage.  Caller must fill this
 	 * from some secure non-volatile location before calling
-	 * vb2api_fw_phase1.  If the VB2_CONTEXT_SECDATA_CHANGED flag is set
-	 * when a function returns, caller must save the data back to the
+	 * vb2api_fw_phase1.  If the VB2_CONTEXT_SECDATA_FIRMWARE_CHANGED flag
+	 * is set when a function returns, caller must save the data back to the
 	 * secure non-volatile location and then clear the flag.
 	 */
 	uint8_t secdata_firmware[VB2_SECDATA_FIRMWARE_SIZE];
@@ -1604,5 +1604,7 @@ vb2_error_t vb2ex_diag_storage_test_control(enum vb2_diag_storage_test ops);
  * @return Current timer value in milliseconds.
  */
 uint32_t vb2ex_mtime(void);
+
+void *vbex_malloc(size_t size);
 
 #endif  /* VBOOT_REFERENCE_2API_H_ */

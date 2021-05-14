@@ -36,7 +36,7 @@ vb2_error_t VbExStreamOpen(VbExDiskHandle_t handle, uint64_t lba_start,
 		return VB2_ERROR_UNKNOWN;
 	}
 
-	s = malloc(sizeof(*s));
+	s = vbex_malloc(sizeof(*s));
 	s->handle = handle;
 	s->sector = lba_start;
 	s->sectors_left = lba_count;
