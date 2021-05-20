@@ -528,6 +528,8 @@ vb2_error_t LoadKernel(struct vb2_context *ctx, LoadKernelParams *params)
 		VbExStreamClose(stream);
 
 		if (rv) {
+			VB2_DEBUG("Partition load failed: %x %x.\n", rv,
+				  VB2_ERROR_LOAD_PARTITION_WORKBUF);
 			VB2_DEBUG("Marking kernel as invalid.\n");
 			GptUpdateKernelEntry(&gpt, GPT_UPDATE_ENTRY_BAD);
 			continue;

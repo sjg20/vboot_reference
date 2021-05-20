@@ -137,7 +137,6 @@ struct vb2_hash {
 _Static_assert(sizeof(struct vb2_hash) - offsetof(struct vb2_hash, raw)
 	<= VB2_MAX_DIGEST_SIZE, "Update VB2_MAX_DIGEST_SIZE for new digests!");
 
-#define UINT8_MAX 255
 _Static_assert(VB2_HASH_ALG_COUNT <= UINT8_MAX, "vb2_hash.algo overflow!");
 
 /**
