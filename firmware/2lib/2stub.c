@@ -256,3 +256,14 @@ vb2_error_t vb2ex_commit_data(struct vb2_context *ctx)
 	ctx->flags &= ~VB2_CONTEXT_NVDATA_CHANGED;
 	return VB2_SUCCESS;
 }
+
+void *vbex_malloc(size_t size)
+{
+	return malloc(size);
+}
+
+void vbex_free(void *ptr)
+{
+	free(ptr);
+}
+

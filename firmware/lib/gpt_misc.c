@@ -29,11 +29,13 @@ int AllocAndReadGptData(VbExDiskHandle_t disk_handle, GptData *gptdata)
 	gptdata->ignored = 0;
 
 	/* Allocate all buffers */
-	gptdata->primary_header = (uint8_t *)malloc(gptdata->sector_bytes);
+	gptdata->primary_header = (uint8_t *)vbex_malloc(gptdata->sector_bytes);
 	gptdata->secondary_header =
-		(uint8_t *)malloc(gptdata->sector_bytes);
-	gptdata->primary_entries = (uint8_t *)malloc(GPT_ENTRIES_ALLOC_SIZE);
-	gptdata->secondary_entries = (uint8_t *)malloc(GPT_ENTRIES_ALLOC_SIZE);
+		(uint8_t *)vbex_malloc(gptdata->sector_bytes);
+	gptdata->primary_entries =
+		 (uint8_t *)vbex_malloc(GPT_ENTRIES_ALLOC_SIZE);
+	gptdata->secondary_entries =
+		 (uint8_t *)vbex_malloc(GPT_ENTRIES_ALLOC_SIZE);
 
 	/* In some cases we try to validate header1 with entries2 or vice versa,
 	   so make sure the entries buffers always got fully initialized. */
@@ -209,14 +211,10 @@ int WriteAndFreeGptData(VbExDiskHandle_t disk_handle, GptData *gptdata)
 
  fail:
 	/* Avoid leaking memory on disk write failure */
-	if (gptdata->primary_header)
-		free(gptdata->primary_header);
-	if (gptdata->primary_entries)
-		free(gptdata->primary_entries);
-	if (gptdata->secondary_entries)
-		free(gptdata->secondary_entries);
-	if (gptdata->secondary_header)
-		free(gptdata->secondary_header);
+	vbex_free(gptdata->primary_header);
+	vbex_free(gptdata->primary_entries);
+	vbex_free(gptdata->secondary_entries);
+	vbex_free(gptdata->secondary_header);
 
 	/* Success */
 	return ret;

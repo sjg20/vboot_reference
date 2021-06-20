@@ -1682,4 +1682,22 @@ vb2_error_t vb2ex_diag_storage_test_control(enum vb2_diag_storage_test ops);
  */
 uint32_t vb2ex_mtime(void);
 
+/**
+ * Allocate memory.
+ *
+ * @param size	Number of bytes to allocate. If size is 0, malloc() returns
+ *	either NULL, or a unique pointer value that can later be successfully
+ *	passed to vbex_free().
+ * @return address of allocated memory, or NULL if no memory was available
+ */
+void *vbex_malloc(size_t size);
+
+/**
+ * Free memory.
+ *
+ * @param ptr	Pointer to free (previously returned from malloc()). If this is
+ *	NULL then this function should be a nop.
+ */
+void vbex_free(void *ptr);
+
 #endif  /* VBOOT_REFERENCE_2API_H_ */

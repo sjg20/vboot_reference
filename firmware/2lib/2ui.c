@@ -214,7 +214,7 @@ vb2_error_t vb2_ui_screen_back(struct vb2_ui_context *ui)
 
 	if (ui->state && ui->state->prev) {
 		tmp = ui->state->prev;
-		free(ui->state);
+		vbex_free(ui->state);
 		ui->state = tmp;
 		if (ui->state->screen->reinit)
 			VB2_TRY(ui->state->screen->reinit(ui));
@@ -261,15 +261,15 @@ vb2_error_t vb2_ui_screen_change(struct vb2_ui_context *ui, enum vb2_screen id)
 		while (ui->state->screen->id != id) {
 			cur_state = ui->state;
 			ui->state = cur_state->prev;
-			free(cur_state);
+			vbex_free(cur_state);
 		}
 		if (ui->state->screen->reinit)
 			VB2_TRY(ui->state->screen->reinit(ui));
 	} else {
 		/* Allocate the requested screen on top of the stack. */
-		cur_state = malloc(sizeof(*ui->state));
+		cur_state = vbex_malloc(sizeof(*ui->state));
 		if (cur_state == NULL) {
-			VB2_DEBUG("WARNING: malloc failed; ignoring\n");
+			VB2_DEBUG("WARNING: vbex_malloc() failed; ignoring\n");
 			return VB2_REQUEST_UI_CONTINUE;
 		}
 		memset(cur_state, 0, sizeof(*ui->state));

@@ -36,7 +36,7 @@ vb2_error_t VbExStreamOpen(VbExDiskHandle_t handle, uint64_t lba_start,
 		return VB2_ERROR_UNKNOWN;
 	}
 
-	s = malloc(sizeof(*s));
+	s = vbex_malloc(sizeof(*s));
 	if (!s)
 		return VB2_ERROR_UNKNOWN;
 	s->handle = handle;
@@ -82,10 +82,6 @@ void VbExStreamClose(VbExStream_t stream)
 {
 	struct disk_stream *s = (struct disk_stream *)stream;
 
-	/* Allow freeing a null pointer */
-	if (!s)
-		return;
-
-	free(s);
+	vbex_free(s);
 	return;
 }
