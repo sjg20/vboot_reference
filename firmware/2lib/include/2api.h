@@ -316,6 +316,13 @@ struct vb2_context {
 	 */
 	uint8_t secdata_fwmp[VB2_SECDATA_FWMP_MAX_SIZE];
 	VB2_PAD_STRUCT(VB2_SECDATA_FWMP_MAX_SIZE, 8);
+
+       /*
+        * Context pointer for use by caller.  Verified boot never looks at
+        * this.  Put context here if you need it for APIs that verified boot
+        * may call (vb2ex_...() functions).
+        */
+       void *non_vboot_context;
 };
 
 /* Resource index for vb2ex_read_resource() */
