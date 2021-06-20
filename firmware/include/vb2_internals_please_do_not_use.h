@@ -22,5 +22,7 @@
  */
 #include "../2lib/include/2misc.h"  /* for vb2_get_sd() */
 #include "../2lib/include/2struct.h"  /* for vb2_shared_data struct */
+#include "../2lib/include/2nvstorage_fields.h"  /* for VB2_NV_OFFS_BOOT etc.*/
+#include "../2lib/include/2secdata.h"  /* for VB2_NV_OFFS_BOOT etc.*/
 
 #endif  /* VBOOT_REFERENCE_VB2_INTERNALS_PLEASE_DO_NOT_USE_H_ */
