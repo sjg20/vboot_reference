@@ -211,9 +211,9 @@ const struct vb2_menu *get_language_menu(struct vb2_ui_context *ui)
 		num_locales = 1;
 	}
 
-	items = malloc(num_locales * sizeof(struct vb2_menu_item));
+	items = vbex_malloc(num_locales * sizeof(struct vb2_menu_item));
 	if (!items) {
-		VB2_DEBUG("ERROR: malloc failed for language items\n");
+		VB2_DEBUG("ERROR: vbex_malloc() failed for language items\n");
 		return NULL;
 	}
 
@@ -999,9 +999,9 @@ static const struct vb2_menu *get_bootloader_menu(struct vb2_ui_context *ui)
 	}
 	VB2_DEBUG("num_bootloaders: %u\n", num_bootloaders);
 	num_items = num_bootloaders + menu_before_len + menu_after_len;
-	items = malloc(num_items * sizeof(struct vb2_menu_item));
+	items = vbex_malloc(num_items * sizeof(struct vb2_menu_item));
 	if (!items) {
-		VB2_DEBUG("ERROR: malloc failed for bootloader items\n");
+		VB2_DEBUG("ERROR: vbex_malloc() failed for bootloader items\n");
 		return NULL;
 	}
 
