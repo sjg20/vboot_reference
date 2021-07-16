@@ -618,7 +618,7 @@ char *vb2api_get_debug_info(struct vb2_context *ctx)
 	vb2_error_t rv;
 	uint32_t i;
 
-	buf = vbex_malloc(DEBUG_INFO_MAX_LENGTH + 1);
+	buf = malloc(DEBUG_INFO_MAX_LENGTH + 1);
 	if (buf == NULL)
 		return NULL;
 

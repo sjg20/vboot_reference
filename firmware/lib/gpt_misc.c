@@ -29,11 +29,11 @@ int AllocAndReadGptData(VbExDiskHandle_t disk_handle, GptData *gptdata)
 	gptdata->ignored = 0;
 
 	/* Allocate all buffers */
-	gptdata->primary_header = (uint8_t *)vbex_malloc(gptdata->sector_bytes);
+	gptdata->primary_header = (uint8_t *)malloc(gptdata->sector_bytes);
 	gptdata->secondary_header =
-		(uint8_t *)vbex_malloc(gptdata->sector_bytes);
-	gptdata->primary_entries = (uint8_t *)vbex_malloc(GPT_ENTRIES_ALLOC_SIZE);
-	gptdata->secondary_entries = (uint8_t *)vbex_malloc(GPT_ENTRIES_ALLOC_SIZE);
+		(uint8_t *)malloc(gptdata->sector_bytes);
+	gptdata->primary_entries = (uint8_t *)malloc(GPT_ENTRIES_ALLOC_SIZE);
+	gptdata->secondary_entries = (uint8_t *)malloc(GPT_ENTRIES_ALLOC_SIZE);
 
 	/* In some cases we try to validate header1 with entries2 or vice versa,
 	   so make sure the entries buffers always got fully initialized. */

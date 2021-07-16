@@ -1619,6 +1619,4 @@ vb2_error_t vb2ex_diag_storage_test_control(enum vb2_diag_storage_test ops);
  */
 uint32_t vb2ex_mtime(void);
 
-void *vbex_malloc(size_t size);
-
 #endif  /* VBOOT_REFERENCE_2API_H_ */
