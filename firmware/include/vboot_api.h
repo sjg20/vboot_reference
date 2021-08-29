@@ -67,6 +67,8 @@ typedef struct VbSelectAndLoadKernelParams {
 	uint8_t partition_guid[16];
 	/* Flags set by signer */
 	uint32_t flags;
+        /* Size of kernel in bytes */
+	uint32_t kernel_size;
 } VbSelectAndLoadKernelParams;
 
 /**

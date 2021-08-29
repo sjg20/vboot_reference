@@ -43,6 +43,7 @@ uint32_t vb2api_secdata_firmware_create(struct vb2_context *ctx)
 
 	/* Set to current version */
 	sec->struct_version = VB2_SECDATA_FIRMWARE_VERSION;
+//        sec->flags = VB2_SECDATA_FIRMWARE_FLAG_DEV_MODE;
 
 	/* Calculate initial CRC */
 	sec->crc8 = vb2_crc8(sec, offsetof(struct vb2_secdata_firmware, crc8));

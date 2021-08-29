@@ -353,6 +353,7 @@ static vb2_error_t vb2_load_partition(
 	uint8_t *kbuf = vb2_workbuf_alloc(&wb, KBUF_SIZE);
 	if (!kbuf)
 		return VB2_ERROR_LOAD_PARTITION_WORKBUF;
+        VB2_DEBUG("kbuf at %p\n", kbuf);
 
 	start_ts = vb2ex_mtime();
 	if (VbExStreamRead(stream, KBUF_SIZE, kbuf)) {
@@ -425,6 +426,8 @@ static vb2_error_t vb2_load_partition(
 
 	/* Get key for preamble/data verification from the keyblock. */
 	struct vb2_public_key data_key;
+	VB2_DEBUG("vb2_unpack_key_buffer &key=%p, data_key=%p\n",
+		  &data_key, &keyblock->data_key);
 	if (vb2_unpack_key(&data_key, &keyblock->data_key)) {
 		VB2_DEBUG("Unable to unpack kernel data key\n");
 		return VB2_ERROR_LOAD_PARTITION_DATA_KEY;
@@ -451,6 +454,7 @@ static vb2_error_t vb2_load_partition(
 		params->kernel_buffer = kernbuf;
 		params->kernel_buffer_size = kernbuf_size;
 	}
+	params->kernel_size = preamble->body_signature.data_size;
 
 	return VB2_SUCCESS;
 }
