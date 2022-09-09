@@ -207,6 +207,12 @@ ifneq ($(filter-out 0,${MOCK_TPM}),)
 CFLAGS += -DMOCK_TPM
 endif
 
+# Avoid build failures outside the chroot on Ubuntu 2022.04
+# e.g.:
+# futility/cmd_create.c:161:9: warning: ‘RSA_free’ is deprecated: Since OpenSSL 3.0
+# [-Wdeprecated-declarations]
+CFLAGS += -Wno-error=deprecated-declarations
+
 # TPM2_SIMULATOR indicates whether the TPM2 simulator feature is enable or not.
 ifneq ($(filter-out 0,${TPM2_SIMULATOR}),)
 CFLAGS += -DTPM2_SIMULATOR=1
