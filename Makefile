@@ -665,7 +665,6 @@ FUTIL_SRCS = \
 	futility/cmd_pcr.c \
 	futility/cmd_show.c \
 	futility/cmd_sign.c \
-	futility/cmd_update.c \
 	futility/cmd_validate_rec_mrc.c \
 	futility/cmd_vbutil_firmware.c \
 	futility/cmd_vbutil_firmware.c \
@@ -681,7 +680,8 @@ FUTIL_SRCS = \
 	futility/vb2_helper.c
 
 ifneq ($(filter-out 0,${USE_FLASHROM}),)
-FUTIL_SRCS += host/lib/flashrom_drv.c \
+FUTIL_SRCS += 	futility/cmd_update.c \
+	host/lib/flashrom_drv.c \
 	futility/updater_archive.c \
 	futility/updater_manifest.c \
 	futility/updater_quirks.c \
